@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Eggs</title>
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<script src="jquery/jquery-1.7.2.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+
+	<div class="row-fluid">
+		<div class="span12">
+
+			<!-- Topbar -->
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<button type="button" class="btn btn-navbar"
+							data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="brand" href="#">PokeTools</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li class="nav"><a href="./index.html">Home</a></li>
+								<li class="nav"><a href="./EvCalculator.html">EV
+										Counter</a></li>
+								<li class="nav"><a href="./DamageCalculator.html">Damage
+										Calculator</a></li>
+								<li class="active"><a href="./Eggs.html">Eggs</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span4">
+					<form class="form-horizontal">
+						<fieldset>
+							<legend>Egg groups</legend>
+							<div id="errorDiv"></div>
+							<div class="control-group">
+								<label class="control-label" for="startGroup">Generation:</label>
+								<div class="controls">
+									<select id="gen" onChange="changeGen();">
+										<option value="3">3|ADV</option>
+										<option value="4">4|DPP</option>
+										<option selected value="5">5|BW</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="startGroup">Start
+									group: </label>
+								<div class="controls">
+									<select id="startGroup">
+
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="goalGroup">Goal group:
+								</label>
+								<div class="controls">
+									<select id="goalGroup">
+
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn btn-primary"
+										onClick="findPath();">
+										<i class="icon-search icon-white"></i> Find path
+									</button>
+									<a data-toggle="modal" href="#infoModal" class="btn btn-info">
+										<i class="icon-info-sign icon-white"></i> Info </a>
+
+									<div class="modal hide fade" id="infoModal">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">×</button>
+											<h3>Info</h3>
+										</div>
+										<div class="modal-body">
+											<h5>What is this?</h5>
+											<p>This was build for the scenario you want to pass some
+												DVs or the Nature from one Egg group to the other. 
+												You will just have to name the start and goal Egg group.
+												After that this programm will tell you how to 							
+											</p>
+										</div>
+										<div class="modal-footer">
+											<a href="#" class="btn" data-dismiss="modal">Close</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="span8">
+					<legend>Result</legend>
+					<div id="resultDiv" hidden>
+						<p>
+							<b>Steps:</b><span id="numberSteps"> 0</span>
+						</p>
+						<div id="pathDiv"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/Eggs.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Damage Calculator</title>
+
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<script src="jquery/jquery-1.7.2.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="js/DamageCalculator.js"></script>
+
+</head>
+<body>
+
+	<!-- Content -->
+
+	<div class="row-fluid">
+		<div class="span12">
+
+			<!-- Topbar -->
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<button type="button" class="btn btn-navbar"
+							data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="brand" href="#">PokeTools</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li class="nav"><a href="./index.html">Home</a>
+								</li>
+								<li class="nav"><a href="./EvCalculator.html">EV
+										Counter</a>
+								</li>
+								<li class="active"><a href="./DamageCalculator.html">Damage
+										Calculator</a>
+								</li>
+								<li class="nav"><a href="./Eggs.html">Eggs</a>
+								</li>								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row-fluid">
+				<div class="span4">
+					<form class="form-horizontal">
+						<fieldset>
+							<legend> Calculate</legend>
+							<div class="control-group">
+								<label class="control-label" for="input01">Level:</label>
+								<div class="controls">
+									<input type="text" class="input-small" id="input01">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="input02">(Special)Attack:</label>
+								<div class="controls">
+									<input type="text" class="input-small" id="input02">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="input03">(Special)Defense:</label>
+								<div class="controls">
+									<input type="text" class="input-small" id="input03">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="input04">Attackpower:</label>
+								<div class="controls">
+									<input type="text" class="input-small" id="input04">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select05">(Special)Attack
+									raise</label>
+								<div class="controls">
+									<select id="select05">
+										<option value="0.25">-6</option>
+										<option value="0.29">-5</option>
+										<option value="0.33">-4</option>
+										<option value="0.4">-3</option>
+										<option value="0.5">-2</option>
+										<option value="0.67">-1</option>
+										<option selected value="1">0</option>
+										<option value="1.5">+1</option>
+										<option value="2">+2</option>
+										<option value="2.5">+3</option>
+										<option value="3">+4</option>
+										<option value="3.5">+5</option>
+										<option value="4">+6</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select06">(Special)Defense
+									raise</label>
+								<div class="controls">
+									<select id="select06">
+										<option value="0.25">-6</option>
+										<option value="0.29">-5</option>
+										<option value="0.33">-4</option>
+										<option value="0.4">-3</option>
+										<option value="0.5">-2</option>
+										<option value="0.67">-1</option>
+										<option selected value="1">0</option>
+										<option value="1.5">+1</option>
+										<option value="2">+2</option>
+										<option value="2.5">+3</option>
+										<option value="3">+4</option>
+										<option value="3.5">+5</option>
+										<option value="4">+6</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="checkbox7">STAB:</label>
+								<div class="controls">
+									<input type="checkbox" id="checkbox7">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select08">Typebonus:</label>
+								<div class="controls">
+									<select id="select08">
+										<option value="1">None</option>
+										<option value="4">x4</option>
+										<option value="2">x2</option>
+										<option value="0.5">x0.5</option>
+										<option value="0.25">x0.25</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select09">Item:</label>
+								<div class="controls">
+									<select id="select09">
+										<option value="1">None</option>
+										<option value="1.3">LifeOrb + 30%</option>
+										<option value="1.5">ChoiceBand/Specs + 50%</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select10">Weather:</label>
+								<div class="controls">
+									<select id="select10">
+										<option value="1">None</option>
+										<option value="1.5">Weather advantage</option>
+										<option value="0.5">Weather disadvantage</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-actions">
+								<button type="button" class="btn btn-primary" onclick="CalculateDamage()">Calculate</button>
+							</div>
+						</fieldset>
+
+					</form>
+				</div>
+				<div class="span8">
+					<legend> Results</legend>
+					<p class="lead">Normal Damage</p>
+					<p>Minimum Damage: <b id="normalMinimum"></b> </p>
+					<p>Maximum Damage: <b id="normalMaximum"></b></p>
+					<p>Average Damage: <b id="normalAverage"></b></p>	
+					<br>
+					<p class="lead">Crit Damage</p>
+					<p>Minimum Damage: <b id="critMinimum"></b></p>
+					<p>Maximum Damage: <b id="critMaximum"></b></p>
+					<p>Average Damage: <b id="critAverage"></b></p>	
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

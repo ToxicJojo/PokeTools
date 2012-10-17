@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>EvCalculator</title>
+
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<script src="jquery/jquery-1.7.2.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+
+	<!-- Topbar -->
+	<div class="row-fluid">
+		<div class="span12">
+
+			<!-- Topbar -->
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<button type="button" class="btn btn-navbar"
+							data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="brand" href="#">PokeTools</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li class="nav"><a href="./index.html">Home</a></li>
+								<li class="active"><a href="./EvCalculator.html">EV
+										Counter</a></li>
+								<li class="nav"><a href="./DamageCalculator.html">Damage
+										Calculator</a></li>
+								<li class="nav"><a href="./Eggs.html">Eggs</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span4">
+					<form class="form-horizontal">
+						<fieldset>
+							<legend> EV´s</legend>
+							<div class="control-group">
+								<label class="control-label" for="hp">HP:</label>
+								<div class="controls">
+									<input type="text" class="input-mini" id="hp" value="0"
+										onChange="countTotal();">
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('hp',1);">+1</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('hp',2);">+2</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('hp',3);">+3</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="attack">Attack:</label>
+								<div class="controls">
+									<input type="text" class="input-mini" id="attack" value="0"
+										onChange="countTotal();">
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('attack',1);">+1</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('attack',2);">+2</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('attack',3);">+3</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="defense">Defense:</label>
+								<div class="controls">
+									<input type="text" class="input-mini" id="defense" value="0"
+										onChange="countTotal();">
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('defense',1);">+1</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('defense',2);">+2</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('defense',3);">+3</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="specialAttack">SpecialAttack:</label>
+								<div class="controls">
+									<input type="text" class="input-mini" id="specialAttack"
+										value="0" onChange="countTotal();">
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('specialAttack',1);">+1</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('specialAttack',2);">+2</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('specialAttack',3);">+3</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="specialDefense">SpecialDefense:</label>
+								<div class="controls">
+									<input type="text" class="input-mini" id="specialDefense"
+										value="0" onChange="countTotal();">
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('specialDefense',1);">+1</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('specialDefense',2);">+2</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('specialDefense',3);">+3</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="speed">Speed:</label>
+								<div class="controls">
+									<input type="text" class="input-mini" id="speed" value="0"
+										onChange="countTotal();">
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('speed',1);">+1</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('speed',2);">+2</button>
+									<button type="button" class="btn btn-success"
+										onClick="ButtonClick('speed',3);">+3</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn btn-danger"
+										onClick="resetEV();">
+										<i class="icon-refresh icon-white"></i> Reset
+									</button>
+									<button type="button" class="btn btn-primary"
+										onClick="saveEV();">
+										<i class="icon-download icon-white""></i> Save
+									</button>
+								</div>
+							</div>
+							<p class="lead">
+								Total: <b id="total">0</b>
+							</p>
+						</fieldset>
+					</form>
+				</div>
+				<div class="span4">
+					<form class="form-inline">
+						<fieldset>
+							<legend>Items</legend>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn" onClick="addVitamine('hp');">
+										<img src="img/kp-plus.png">
+									</button>
+									<button type="button" class="btn" onClick="addFeather('hp');"
+										id="f1">
+										<img src="img/heilfeder.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="substractBerry('hp');">
+										<img src="img/kpbeere.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="hpMod">
+										<img src="img/machtgewicht.png">
+									</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn"
+										onClick="addVitamine('attack');">
+										<img src="img/protein.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="addFeather('attack');" id="f2">
+										<img src="img/kraftfeder.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="substractBerry('attack');">
+										<img src="img/attackbeere.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="attackMod">
+										<img src="img/machtreif.png">
+									</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn"
+										onClick="addVitamine('defense');">
+										<img src="img/eisen.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="addFeather('defense');" id="f3">
+										<img src="img/abwehrfeder.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="substractBerry('defense');">
+										<img src="img/defensebeere.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="defenseMod">
+										<img src="img/machtgurt.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="macho">
+										<img src="img/machoband.png">
+									</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn"
+										onClick="addVitamine('specialAttack');">
+										<img src="img/carbon.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="addFeather('specialAttack');" id="f4">
+										<img src="img/geniefeder.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="substractBerry('specialAttack');">
+										<img src="img/specialattackbeere.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="specialAttackMod">
+										<img src="img/machtlinse.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="pokerus">
+										<img src="img/pokerus.png">
+									</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn"
+										onClick="addVitamine('specialDefense');">
+										<img src="img/kalzium.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="addFeather('specialDefense');" id="f5">
+										<img src="img/espritfeder.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="substractBerry('specialDefense');">
+										<img src="img/specialdefensebeere.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="specialDefenseMod">
+										<img src="img/machtgurt.png">
+									</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="button" class="btn"
+										onClick="addVitamine('speed');">
+										<img src="img/zink.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="addFeather('speed');" id="f6">
+										<img src="img/flinkfeder.png">
+									</button>
+									<button type="button" class="btn"
+										onClick="substractBerry('speed');">
+										<img src="img/speedbeere.png">
+									</button>
+									<button type="button" class="btn" data-toggle="button"
+										id="speedMod">
+										<img src="img/machtkette.png">
+									</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="span4">
+					<form class="form-inline">
+						<fieldset>
+							<legend>Info</legend>
+							<div class="control-group">
+								<label class="control-label" for="gen">Generation:</label>
+								<div class="controls">
+									<select id="gen" onChange="changeGen();">
+										<option value="3.1">3|R/S</option>
+										<option value="3.2">3|FR/LG</option>
+										<option value="4.1">4|D/P/P</option>
+										<option value="4.2">4|HG/SS</option>
+										<option selected value="5">5|B/W</option>
+									</select>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+					<div id="infoBW">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Stat</th>
+									<th>Pokemon</th>
+									<th>Route</th>
+									<th>EV´s</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>HP</td>
+									<td>Stunfisk</td>
+									<td>Icirrus City(Surf)</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Attack</td>
+									<td>Patrat/Lillipup</td>
+									<td>Route 1</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Defense</td>
+									<td>Yamask/Cofagrigus</td>
+									<td>Relic Castle</td>
+									<td>+1/+2</td>
+								</tr>
+								<tr>
+									<td>Special Attack</td>
+									<td>Litwick/Elgyem</td>
+									<td>Celestial Tower</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Special Defense</td>
+									<td>Frillish</td>
+									<td>Driftveil City(Surf)</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Speed</td>
+									<td>Basculin</td>
+									<td>Route 1/3(Surf)</td>
+									<td>+2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div id="infoHGSS" hidden="true">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Stat</th>
+									<th>Pokemon</th>
+									<th>Route</th>
+									<th>EV´s</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>HP</td>
+									<td>Slowpoke</td>
+									<td>Slowpoke Well(Surf)</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Attack</td>
+									<td>Goldeen/Seaking</td>
+									<td>Route 42(Surf)</td>
+									<td>+1/+2</td>
+								</tr>
+								<tr>
+									<td>Defense</td>
+									<td>Tangela</td>
+									<td>Route 21</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Special Attack</td>
+									<td>Gastly</td>
+									<td>Bell Tower(Night)</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Special Defense</td>
+									<td>Tentacool/Tentacruel</td>
+									<td>Route 40(Surf)</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Speed</td>
+									<td>Diglet/Dugtrio</td>
+									<td>Diglett's Cave</td>
+									<td>+1/+2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="infoDDP" hidden="true">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Stat</th>
+									<th>Pokemon</th>
+									<th>Route</th>
+									<th>EV´s</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>HP</td>
+									<td>Bidoof</td>
+									<td>Route 201</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Attack</td>
+									<td>Gyarados/Seaking</td>
+									<td>Twinleaf Town(Super Rod)</td>
+									<td>+2</td>
+								</tr>
+								<tr>
+									<td>Defense</td>
+									<td>Geodude/Graveler/Onix</td>
+									<td>Iron Island</td>
+									<td>+1/+2/+1</td>
+								</tr>
+								<tr>
+									<td>Special Attack</td>
+									<td>Gastly</td>
+									<td>Old Chateau</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Special Defense</td>
+									<td>Tentacruel</td>
+									<td>Route 223(Surf)</td>
+									<td>+2</td>
+								</tr>
+								<tr>
+									<td>Speed</td>
+									<td>Poliwag/Poliwhirl</td>
+									<td>Route 227(Surf)</td>
+									<td>+1/+2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="infoFRLG" hidden="true">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Stat</th>
+									<th>Pokemon</th>
+									<th>Route</th>
+									<th>EV´s</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>HP</td>
+									<td>Dunsparce</td>
+									<td>Three Island's Port</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Attack</td>
+									<td>Paras</td>
+									<td>Mt Moon Basement</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Defense</td>
+									<td>Tangela</td>
+									<td>Route 21</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Special Attack</td>
+									<td>Gastly/Haunter</td>
+									<td>Pokemon Tower</td>
+									<td>+1/+2</td>
+								</tr>
+								<tr>
+									<td>Special Defense</td>
+									<td>Tentacool/Tentacruel</td>
+									<td>Kindle Road (Surf)</td>
+									<td>+1/+2</td>
+								</tr>
+								<tr>
+									<td>Speed</td>
+									<td>Diglet/Dugtrio</td>
+									<td>Diglett's Cave</td>
+									<td>+1/+2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="infoRS" hidden="true">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Stat</th>
+									<th>Pokemon</th>
+									<th>Route</th>
+									<th>EV´s</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>HP</td>
+									<td>Whismur</td>
+									<td>Rusturf Tunnel</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Attack</td>
+									<td>Carvanha/Sharpedo(Super Rod)</td>
+									<td>Route 118</td>
+									<td>+1/+2</td>
+								</tr>
+								<tr>
+									<td>Defense</td>
+									<td>Clamperl</td>
+									<td>Underwater</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Special Attack</td>
+									<td>Spinda</td>
+									<td>Route 113</td>
+									<td>+1</td>
+								</tr>
+								<tr>
+									<td>Special Defense</td>
+									<td>Tentacool/Tentacruel</td>
+									<td>Abandoned Ship(Surf)</td>
+									<td>+1/+2</td>
+								</tr>
+								<tr>
+									<td>Speed</td>
+									<td>Zubat/Golbat</td>
+									<td>Seafloor Cavern</td>
+									<td>+1/+2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script src="js/EvCounter.js"></script>
+</body>
+</html>
