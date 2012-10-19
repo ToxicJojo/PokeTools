@@ -96,12 +96,17 @@ function changeGen() {
 		document.getElementById("f5").className = "btn";
 		document.getElementById("f6").className = "btn";
 		// Info
-		document.getElementById("infoBW").hidden = false;
+		if (genExact == 5.1) {
+			document.getElementById("infoBW").hidden = false;
+		} else if (genExact == 5.2) {
+			document.getElementById("infoBW2").hidden = false;
+		}
 	}
 
 }
 
 function hideInfo() {
+	document.getElementById("infoBW2").hidden = true;
 	document.getElementById("infoBW").hidden = true;
 	document.getElementById("infoHGSS").hidden = true;
 	document.getElementById("infoDDP").hidden = true;

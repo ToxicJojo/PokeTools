@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>PokeTools</title>
+
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<script src="jquery/jquery-1.8.2.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="js/PokeToolsLib.js"></script>
+</head>
+<body>
+	<div class="row-fluid">
+		<div class="span12">
+
+			<!-- Topbar -->
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<button type="button" class="btn btn-navbar"
+							data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="brand" href="#">PokeTools</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li class="nav"><a href="./index.html">Home</a></li>
+								<li class="nav"><a href="./EvCalculator.html">EV
+										Counter</a></li>
+								<li class="nav"><a href="./DamageCalculator.html">Damage
+										Calculator</a></li>
+								<li class="nav"><a href="./Eggs.html">Eggs</a></li>
+								<li class="active"><a href="./CatchRate.html">Catch
+										Rate</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Content -->
+	<div class="row-fluid">
+		<div class="span4">
+			<form class="form-horizontal">
+				<fieldset>
+					<legend> Calculate</legend>
+					<div class="control-group">
+						<label class="control-label" for="input01">MaxHP:</label>
+						<div class="controls">
+							<input type="text" class="input-small" id="input01">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="input02">CurrentHP:</label>
+						<div class="controls">
+							<input type="text" class="input-small" id="input02"> <i
+								class="icon-info-sign" rel="tooltip"
+								data-original-title="You can give the real number of HP or the percentage in the format x% (e.g. 34%)"></i>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="input03">Catch Rate:</label>
+						<div class="controls">
+							<input type="text" class="input-small" id="input03">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="select04">Condition </label>
+						<div class="controls">
+							<select id="select04">
+								<option value="1">None</option>
+								<option value="1.5">Burn</option>
+								<option value="2">Sleep</option>
+								<option value="2">Freeze</option>
+								<option value="1.5">Paralysis</option>
+								<option value="1.5">Poison</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="button" class="btn btn-primary"
+							onclick="CalculateCatchRate()">Calculate</button>
+					</div>
+				</fieldset>
+
+			</form>
+		</div>
+		<div class="span8">
+			<legend> Results</legend>
+			<p class="lead">Normal Balls:</p>
+			<p>
+				Poké Ball:<b id="catchPercentagePokeBall"></b>
+			</p>
+			<p>
+				Great Ball:<b id="catchPercentageGreatBall"></b>
+			</p>
+			<p>
+				Ultra Ball:<b id="catchPercentageUltraBall"></b>
+			</p>
+			<p class="lead">Special Balls:</p>
+			<p>
+				<small>Assuming their special ability is triggered(hover
+					over the text to see when they are triggered)</small>.
+			</p>
+
+			<p>
+				Safari Ball:<b id="catchPercentageSafariBall"></b>
+			</p>
+			<p>
+				<span rel="tooltip" data-original-title="After 40 turns.">Timer
+					Ball:</span><b id="catchPercentageTimerBall"></b>
+			</p>
+			<p>
+				<span rel="tooltip"
+					data-original-title="If used on Pokémon found underwater in RSE and while Surfing or fishing in FRLG, DPP, and HGSS">Dive
+					Ball:</span><b id="catchPercentageDiveBall"></b>
+			</p>
+			<p>
+				<span rel="tooltip" data-original-title="If used in the first turn.">Quick
+					Ball:</span><b id="catchPercentageQuickBall"></b>
+			</p>
+			<p>
+				<span rel="tooltip"
+					data-original-title="If used on Bug- or Water-type Pokémon.">Net
+					Ball:</span><b id="catchPercentageNetBall"></b>
+			</p>
+			<p>
+				<span rel="tooltip"
+					data-original-title="When used at night between 20:00 and 4:00 or dark areas like caves).">Dusk
+					Ball:</span><b id="catchPercentageDuskBall"></b>
+			</p>
+			<p>
+				<span rel="tooltip"
+					data-original-title="When used on Pokémon encountered by fishing.">Lure
+					Ball:</span><b id="catchPercentageLureBall"></b>
+
+			</p>
+			<p>
+				<span rel="tooltip"
+					data-original-title="When used on a Pokémon that evolves with a Moon Stone, which include: Nidoran-M, Nidorino, Nidoking, Nidoran-F, Nidorina, Nidoqueen, Cleffa, Clefairy, Clefable, Igglybuff, Jigglypuff, Wigglytuff, Skitty, and Delcatty.">Moon
+					Ball:</span><b id="catchPercentageMoonBall"></b>
+			</p>
+			<p>
+				<span rel="tooltip"
+					data-original-title="When used on a Pokemon who is the same species and opposite gender of the opposing Pokémon.">Love
+					Ball:</span><b id="catchPercentageLoveBall"></b>
+			</p>
+		</div>
+	</div>
+
+	<script src="js/CatchRate.js"></script>
+</body>
+</html>

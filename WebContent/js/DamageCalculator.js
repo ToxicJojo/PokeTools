@@ -66,5 +66,5 @@ function CalculateDamage() {
 	document.getElementById("critMaximum").textContent = MaxDmgCrit;
 	
 	document.getElementById("normalAverage").textContent = Math.floor((MinDmg + MaxDmg) / 2);
-	document.getElementById("critAverage").textContent = Math.floor((MinDmgCrit + MaxDmgCrit) / 2);;
+	document.getElementById("critAverage").textContent = Math.floor((MinDmgCrit + MaxDmgCrit) / 2);
 }
